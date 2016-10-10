@@ -59,6 +59,7 @@ public class CrudExamples
             found, it is assumed to be the lost node that was successfully created on the first try and is returned to
             the caller.
          */
+        // TODO: SAM: How did you test the edge case? withProtection
         return client.create().withProtection().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(path, payload);
     }
 
