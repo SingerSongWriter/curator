@@ -306,6 +306,7 @@ public class CuratorFrameworkImpl implements CuratorFramework
                 executorService.shutdownNow();
                 try
                 {
+                    // TODO: SAM: The close is blocking. It won't return until all the executorService are shutdown.
                     executorService.awaitTermination(maxCloseWaitMs, TimeUnit.MILLISECONDS);
                 }
                 catch ( InterruptedException e )

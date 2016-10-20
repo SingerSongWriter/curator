@@ -95,6 +95,10 @@ public class RetryLoop
      * @return procedure result
      * @throws Exception any non-retriable errors
      */
+    /** TODO: SAM: Why use callable here, the side effect is that callable cannot throw checked exceptions.
+        TODO: SAM: That's the root cause of all curatorFramework method throws Exception while inside the call method it's calling zk api
+        TODO: SAM: which only throws KeeperException and InterruptException
+     */
     public static<T> T      callWithRetry(CuratorZookeeperClient client, Callable<T> proc) throws Exception
     {
         T               result = null;
