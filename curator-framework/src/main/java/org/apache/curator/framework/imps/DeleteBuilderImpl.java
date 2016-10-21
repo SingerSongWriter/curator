@@ -267,10 +267,13 @@ class DeleteBuilderImpl implements DeleteBuilder, BackgroundOperation<String>, E
         }
         catch ( Exception e )
         {
+            // TODO: SAM: Why this thread will not interrupt by itself? Why do you need to force interrupt?
             ThreadUtils.checkInterrupted(e);
             //Only retry a guaranteed delete if it's a retryable error
             if( (RetryLoop.isRetryException(e) || (e instanceof InterruptedException)) && guaranteed )
             {
+                // TODO: SAM: It will do the deletion in background, i.e. asynchronized
+                // TODO: SAM: It will call client.delete().guaranteed().inBackground().forPath(path);
                 client.getFailedDeleteManager().addFailedDelete(unfixedPath);
             }
             throw e;

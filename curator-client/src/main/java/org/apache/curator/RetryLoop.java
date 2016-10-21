@@ -107,6 +107,7 @@ public class RetryLoop
         {
             try
             {
+                // TODO: SAM: Blocked the procedure call until zk is connection or timed out
                 client.internalBlockUntilConnectedOrTimedOut();
                 
                 result = proc.call();
@@ -151,6 +152,7 @@ public class RetryLoop
      * @param rc result code
      * @return true/false
      */
+    // TODO: SAM: Only retry when exception is CONNECTIONLOSS, OPERATIONTIMEOUT, SESSIONMOVED and SESSIONEXPIRED
     public static boolean      shouldRetry(int rc)
     {
         return (rc == KeeperException.Code.CONNECTIONLOSS.intValue()) ||

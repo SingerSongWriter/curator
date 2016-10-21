@@ -278,6 +278,11 @@ class SetDataBuilderImpl implements SetDataBuilder, BackgroundOperation<PathAndB
                 @Override
                 public Stat call() throws Exception
                 {
+                    // TODO: SAM: Why there's not much exception handling for setData? Not like the other methods
+                    /* Set the data for the node of the given path if such a node exists and the
+                    * given version matches the version of the node (if the given version is
+                    * -1, it matches any node's versions). Return the stat of the node.
+                    */
                     return client.getZooKeeper().setData(path, data, version);
                 }
             }

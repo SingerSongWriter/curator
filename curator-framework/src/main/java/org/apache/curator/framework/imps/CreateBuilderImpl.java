@@ -722,6 +722,7 @@ class CreateBuilderImpl implements CreateBuilder, BackgroundOperation<PathAndByt
                         boolean localFirstTime = firstTime.getAndSet(false) && !debugForceFindProtectedNode;
 
                         String createdPath = null;
+                        // TODO: SAM: When doProtected is true. It will create a existing node with a random postfix
                         if ( !localFirstTime && doProtected )
                         {
                             debugForceFindProtectedNode = false;
@@ -736,6 +737,7 @@ class CreateBuilderImpl implements CreateBuilder, BackgroundOperation<PathAndByt
                             }
                             catch ( KeeperException.NoNodeException e )
                             {
+                                // TODO: SAM: When createParentsIfNeeded is true.
                                 if ( createParentsIfNeeded )
                                 {
                                     ZKPaths.mkdirs(client.getZooKeeper(), path, false, client.getAclProvider(), createParentsAsContainers);

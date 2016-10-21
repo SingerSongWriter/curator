@@ -289,6 +289,7 @@ class GetDataBuilderImpl implements GetDataBuilder, BackgroundOperation<String>,
         return responseData;
     }
 
+    // TODO: SAM: Basically the curator get method only throws KeeperException and InterruptException
     private byte[] pathInForeground(final String path) throws Exception
     {
         TimeTrace   trace = client.getZookeeperClient().startTracer("GetDataBuilderImpl-Foreground");
@@ -307,6 +308,7 @@ class GetDataBuilderImpl implements GetDataBuilder, BackgroundOperation<String>,
                     }
                     else
                     {
+                        // TODO: SAM: I don't get the logic here.  watching.getWatcher() is false. Oh, I see
                         responseData = client.getZooKeeper().getData(path, watching.getWatcher(), responseStat);
                     }
                     return responseData;

@@ -21,11 +21,13 @@ package org.apache.curator.framework.imps;
 import org.apache.curator.framework.api.CuratorWatcher;
 import org.apache.zookeeper.Watcher;
 
+// TODO: SAM: curator watcher wrapper
 class Watching
 {
     private final Watcher       watcher;
     private final boolean       watched;
 
+    // TODO: SAM: Why watched = true and watcher = null? And both are final
     Watching(boolean watched)
     {
         this.watcher = null;
